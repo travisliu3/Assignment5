@@ -33,6 +33,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/login">Log in</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Create Article</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -49,204 +52,23 @@
 
   <div class="container mt-5">
     <div class="row">
+      {{#each title}}
       <div class="col-sm-6">
         <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
+          <img src="{{this.image}}" class="card-img-top"
             alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{this.title}}</h5>
+            <p class="card-text">{{this.date}}</p>
+            <form action="/article" method="post">
+              <input type="hidden" name="content" id="content" value="{{this.content}}">
+              <input type="hidden" name="title" id="title" value="{{this.title}}">
+              <button type="submit" class="btn btn-primary">Go somewhere</button>
+            </form>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="card-img-top"
-            alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
-            <p class="card-text">{{content}}</p>
-            <a href="/article" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
   </div>

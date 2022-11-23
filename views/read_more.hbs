@@ -42,7 +42,7 @@
 
     <div class="img">
         <div class="w-50 p-4 mx-auto" style="background-color: #eee;">
-            <img src="https://m0.her.ie/wp-content/uploads/2019/04/25133811/iStock-488261971.jpg" class="img-fluid"
+            <img src="{{image}}" class="img-fluid"
                 alt="...">
         </div>
     </div>
@@ -51,12 +51,51 @@
         <divc class="container">
             <div class="row">
                 <div class="text-center">
-                    <h1 style="font-size: 75px">This is a heading</h1>
+                    <h1 style="font-size: 75px">{{title}}</h1>
                     <p>{{read}}</p>
                 </div>
             </div>
             </div>
     </article>
+
+    <form action="/update" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="ids" id="ids" value="{{id}}">
+        <div class="container bg-light">
+            <div class="p-3 col-sm-12 col-md-6">
+                <div class="form-check">
+                    <label for="title">Title:</label>
+                    <input class="form-control" type="text" name="title" id="title">
+                </div>
+            </div>
+            <div class="p-3 col-sm-12 col-md-6">
+                <div class="form-check">
+                    <label for="dat">Date:</label>
+                    <input class="form-control" type="text" name="dat" id="dat">
+                </div>
+            </div>
+            <div class="p-3 col-sm-12 col-md-6">
+                <div class="form-check">
+                    <label for="content">Content:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="p-3 col-sm-12 col-md-6">
+                <div class="form-check">
+                    <label for="img">Image:</label>
+                    <input list="images" id="img" name="img"><br><br>
+                    <datalist id="images">
+                        <option value="bird.jpg">
+                        <option value="lion.jpg">
+                        <option value="penguin.jpg">
+                        <option value="flower.jpg">
+                    </datalist>
+                </div>
+            </div>
+            <div class="p-3 col-sm-12 col-md-6">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </div>
+    </form>
 
     <div class="container py-4 py-md-5 mt-5 bg-light">
         <form action="https://httpbin.org/post" method="post">

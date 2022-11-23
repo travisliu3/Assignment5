@@ -5,11 +5,13 @@ const bodyParser = require("body-parser");
 const handlebars = require("express-handlebars");
 const app = express();
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 //4qOR3EYlGGioqxKW
-const registration = mongoose.createConnection("mongodb+srv://tliu84:4qOR3EYlGGioqxKW@cluster0.fhmfm06.mongodb.net/registration?retryWrites=true&w=majority");
-const blog = mongoose.createConnection("mongodb+srv://tliu84:4qOR3EYlGGioqxKW@cluster0.fhmfm06.mongodb.net/registration?retryWrites=true&w=majority");
-const read = mongoose.createConnection("mongodb+srv://tliu84:4qOR3EYlGGioqxKW@cluster0.fhmfm06.mongodb.net/registration?retryWrites=true&w=majority");
+const registration = mongoose.createConnection("mongodb+srv://tliu84:4qOR3EYlGGioqxKW@cluster0.fhmfm06.mongodb.net/registration2?retryWrites=true&w=majority");
+const blog = mongoose.createConnection("mongodb+srv://tliu84:4qOR3EYlGGioqxKW@cluster0.fhmfm06.mongodb.net/registration2?retryWrites=true&w=majority");
+
+app.use(express.static("img"));
 
 const registration_schema = new Schema({
     "fname": String,
@@ -32,16 +34,13 @@ const registration_schema = new Schema({
 
 const blog_schema = new Schema({
     "title": String,
-    "content": String
-});
-
-const read_schema = new Schema({
-    "read": String
+    "date": String,
+    "content": String,
+    "image": String,
 });
 
 const customer = registration.model("registration", registration_schema);
 const blogcon = blog.model("blog_db", blog_schema);
-const readcon = read.model("read_db", read_schema);
 
 app.engine(".hbs", handlebars.engine({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
@@ -50,16 +49,61 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // setup a 'route' to listen on the default url path
 app.get("/", (req, res) => {
-    blogcon.findOne().exec().then((data) => {
-        console.log(data);
-        res.render("blog", { title: data.title, content: data.content, layout: false });
+    blogcon.find().exec().then((data) => {
+        let datalog = new Array;
+        data.forEach(element => {
+            datalog.push({
+                title: element.title,
+                date: element.date,
+                content: element.content,
+                image: element.image
+            });
+        });
+        res.render("blog", { title: datalog, layout: false });
     });
 });
 
-app.get("/article", function (req, res) {
-    readcon.findOne().exec().then((data) => {
-        res.render("read_more", { read: data.read, layout: false });
+app.get("/admin", (req, res) => {
+    res.render("Administrator", { layout: false });
+});
+
+app.post("/admin", (req, res) => {
+    console.log(req.body.img);
+    let articleData = new blogcon({
+        title: req.body.title,
+        date: req.body.date,
+        content: req.body.content,
+        image: req.body.img
+    }).save((e, data) => {
+        if (e) {
+            console.log(e);
+        } else {
+            console.log(data);
+        }
     });
+    res.redirect("/");
+});
+
+app.post("/article", function (req, res) {
+    blogcon.findOne({ title: req.body.title }).exec().then((data) => {
+        res.render("read_more", { image: data.image, id: data._id, read: data.content, title: data.title, date: data.date, layout: false });
+    });
+});
+
+app.post("/update", (req, res) => {
+    blogcon.updateOne({
+        _id: req.body.ids
+    }, {
+        $set: {
+
+            title: req.body.title,
+            date: req.body.dat,
+            content: req.body.content,
+            image: req.body.img
+        }
+    }).exec();
+    res.redirect("/");
+
 });
 
 app.get("/login", function (req, res) {
